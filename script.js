@@ -53,8 +53,7 @@ var showForecast = function(data) {
     weatherTxt.className = ""
     forecast.innerHTML = ""
 
-    for (let index = 0; index < data.days.length; index++) {
-        console.log(data.days[index])
+    for (let index = 0; index <= 5; index++) {
         var div = document.createElement("div")
         var article = document.createElement("article")
         var title = document.createElement("p")
@@ -76,7 +75,7 @@ var showForecast = function(data) {
         textFive.className = "subtitle"
 
         title.textContent = new Date(data.days[index].datetimeEpoch*1000).toLocaleDateString()
-        img.src = `${data.days[index].icon}.png`
+        img.src = `../Travel-Planner/pictures/${data.days[index].icon}.png`
         
         text.textContent = data.days[index].temp + " °F"
         textTwo.textContent = "Feels like: " + data.days[index].feelslike + " °F"
