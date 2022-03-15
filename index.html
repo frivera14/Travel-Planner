@@ -12,40 +12,40 @@
 </head>
 
 <body>
-  <header class="has-background-primary-dark">
-    <h1>Trip Planner App
+  <header>
+    <h1 class="strong">Triptation
     </h1>
   </header>
 
   <main>
-      <h2><strong>Where do you want to go?</strong></h2>
+      <h2><strong class="strong">Where do you want to go?</strong></h2>
 
       <!--Search Engine  -->
-    <div class="searchbar is-justify-content-center">
+    <div class="searchbar is-flex-direction-column">
       <input id="city" class="input is-rounded is-medium" type="text" placeholder="Search your destination">
       <input id="startDate" type="date" class="input is-rounded is-medium" placeholder="mm/dd/yyyy" autocomplete="off">
       <input id="endDate" type="date" class="input is-rounded is-medium" placeholder="mm/dd/yyyy" autocomplete="off">
-      <button id="search" class="button is-primary is-rounded is-large is-full-width">Search</button>
+      <button id="search" style="background-color: coral;" class="button has-text-white is-rounded is-large ">Search</button>
     </div>
 
     <!-- Suggestions -->
     <div id="suggestions" class="buttons is-justify-content-center">
-        <button id="search" class="button is-rounded is-medium">New york</button>
-        <button id="search" class="button is-rounded is-medium">Los Angeles</button>
-        <button id="search" class="button is-rounded is-medium">Paris</button>
-        <button id="search" class="button is-rounded is-medium">London</button>
-        <button id="search" class="button is-rounded is-medium">Amsterdam</button>
+        <button id="search" class="button has-background-primary has-text-white-bis is-rounded is-medium">New york</button>
+        <button id="search" class="button has-background-primary has-text-white-bis is-rounded is-medium">Los Angeles</button>
+        <button id="search" class="button has-background-primary has-text-white-bis is-rounded is-medium">Paris</button>
+        <button id="search" class="button has-background-primary has-text-white-bis is-rounded is-medium">London</button>
+        <button id="search" class="button has-background-primary has-text-white-bis is-rounded is-medium">Amsterdam</button>
     </div>
 
     <!-- Weather Data -->
-    <h4 class="hide" id="weatherTxt"><strong>Weather Data</strong></h4>
-    <div id="forecast" class="tile is-ancestor">
+    <h4 class="hide" id="weatherTxt"><strong class="strong">Weather Data</strong></h4>
+    <div id="forecast" class="container is-fluid tile is-ancestor is-flex-wrap-wrap">
 
     </div>
 
     <!-- Popular Spots -->
-    <h4><strong>Popular Spots</strong></h4>
-    <div id="tiles" class="tile is-ancestor">
+    <h4 class="hide"><strong>Popular Spots</strong></h4>
+    <div id="tiles" class="container is-fluid tile is-ancestor is-flex-wrap-wrap">
         <div class="tile is-parent">
             <article class="tile is-child box">
               <p class="title">Hot Spot</p>

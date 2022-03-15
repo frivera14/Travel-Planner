@@ -53,7 +53,7 @@ var showForecast = function(data) {
     weatherTxt.className = ""
     forecast.innerHTML = ""
 
-    for (let index = 0; index <= 5; index++) {
+    for (let index = 0; index < data.days.length; index++) {
         var div = document.createElement("div")
         var article = document.createElement("article")
         var title = document.createElement("p")
