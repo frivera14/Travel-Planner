@@ -17,6 +17,24 @@ let lon; // place longitude
 let lat; // place latitude
 let count; // total objects count
 
+// Get the modal
+var modal = document.getElementById("myModal");
+
+// Get the <span> element that closes the modal
+var span = document.getElementsByClassName("close")[0];
+
+// When the user clicks on <span> (x), close the modal
+span.onclick = function() {
+  modal.style.display = "none";
+}
+
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function(event) {
+  if (event.target == modal) {
+    modal.style.display = "none";
+  }
+}
+
 var getWeatherData = function (event) {
 
     event.preventDefault();
@@ -26,15 +44,14 @@ var getWeatherData = function (event) {
     until = endDate.value
 
     if (cityname) {
-        console.log(cityname, from, until);
         retrieveAPI(cityname, from, until);
-
-    } else {
-        alert("Enter a valid city")
+    } 
+    else {
+        document.getElementById("textModal").innerHTML = "Please enter a valid city name!"
+        modal.style.display = "block";
     }
 
     apiGet("geoname","name="+cityname).then(function(data){
-        let message = "Please enter a valid city.";
         if(data.status == "OK"){
             var hideID = document.getElementById("hide");
             var hideTitle = document.getElementById("hideTitle");
@@ -44,17 +61,17 @@ var getWeatherData = function (event) {
             if(hideTitle){
                 hideTitle.id="nothide";
             }
-            const regionNamesInEnglish = new Intl.DisplayNames(['en'], {type:'region'});
-            message = "";
             lon = data.lon;
             lat = data.lat;
-            document.getElementById("info").innerHTML=`${message}`;
             loadList();
         }
         else {
-        document.getElementById("info").innerHTML=`${message}`; }
-    });
+        document.getElementById("textModal").innerHTML = "Please enter a valid city name!"
+        modal.style.display = "block";
+        
+        }
 
+})
 }
 
 var retrieveAPI = function (cityname, from, until) {
@@ -64,20 +81,18 @@ var retrieveAPI = function (cityname, from, until) {
     fetch(apiURL)
         .then(function (response) {
             if (response.ok) {
-                console.log(response);
                 return response.json()
             } else {
-                alert("Error: " + response.statusText)
                 throw "Error"
             }
 
         })
         .then(function (data) {
-            console.log(data)
             showForecast(data)
         })
         .catch(function (error) {
-            alert("Unable to connect to climate")
+            document.getElementById("textModal").innerHTML = "Unable to connect to climate, please enter another city name!"
+            modal.style.display = "block";
         })
 }
 
@@ -284,7 +299,7 @@ function apiGet(method, query) {
   function loadList() {
       apiGet(
         "radius",
-        `radius=3000&limit=${pageLength}&offset=0&lon=${lon}&lat=${lat}&rate=2&format=json`
+        `radius=3500&limit=${pageLength}&offset=2&lon=${lon}&lat=${lat}&rate=2&format=json`
       ).then(function(data) {
           for(i=0; i<titles.length; ++i) {  
           if ( data[i] == null) {
@@ -331,3 +346,4 @@ function apiGet(method, query) {
           desc[i].innerHTML = "No description found."
         });
   }
+
