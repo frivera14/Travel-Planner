@@ -64,6 +64,10 @@ h1{
 	color:coral;
 }
 
+#hide, #hideTitle {
+    display: none;
+}
+
 
 
 
