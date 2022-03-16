@@ -4,14 +4,21 @@ var startDate = document.getElementById("startDate")
 var endDate = document.getElementById("endDate")
 var searchBtn = document.getElementById("search")
 var forecast = document.getElementById("forecast")
+var itinerary = document.getElementById("itinerary")
+var saveTask = document.getElementById("taskSave")
+var taskBox = document.getElementById("taskBox")
+var trip = JSON.parse(localStorage.getItem("trips") || '[]')    
+var from
+var until
+var cityname
 
-var getWeatherData = function(event) {
+var getWeatherData = function (event) {
 
     event.preventDefault();
 
-    var cityname = textBox.value.trim();
-    var from = startDate.value
-    var until = endDate.value
+    cityname = textBox.value.trim();
+    from = startDate.value
+    until = endDate.value
 
     if (cityname) {
         console.log(cityname, from, until);
@@ -19,11 +26,11 @@ var getWeatherData = function(event) {
 
     } else {
         alert("Enter a valid city")
-    }    
-    
+    }
+
 }
 
-var retrieveAPI = function(cityname, from, until) {
+var retrieveAPI = function (cityname, from, until) {
 
     var apiURL = `https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/${cityname}/${from}/${until}?key=VLELTD5BYNLQJ2U6ZZ6BR6XNP`
 
@@ -47,7 +54,7 @@ var retrieveAPI = function(cityname, from, until) {
         })
 }
 
-var showForecast = function(data) {
+var showForecast = function (data) {
     var weatherTxt = document.getElementById("weatherTxt")
 
     weatherTxt.className = ""
@@ -62,8 +69,8 @@ var showForecast = function(data) {
         var textThree = document.createElement("p")
         var textFour = document.createElement("p")
         var textFive = document.createElement("p")
-        var img = document.createElement("img")   
-        
+        var img = document.createElement("img")
+
 
         div.className = "tile is-parent"
         article.className = "tile is-child box"
@@ -74,16 +81,16 @@ var showForecast = function(data) {
         textFour.className = "subtitle"
         textFive.className = "subtitle"
 
-        title.textContent = new Date(data.days[index].datetimeEpoch*1000).toLocaleDateString()
+        title.textContent = new Date(data.days[index].datetimeEpoch * 1000).toLocaleDateString()
         img.src = `../Travel-Planner/pictures/${data.days[index].icon}.png`
-        
-        text.textContent = data.days[index].temp + " °F"
+
+        text.textContent = "Temp: " + data.days[index].temp + " °F"
         textTwo.textContent = "Feels like: " + data.days[index].feelslike + " °F"
         textThree.textContent = "Wind: " + data.days[index].windspeed + " mph"
         textFour.textContent = "UV Index: " + data.days[index].uvindex + "%"
         textFive.textContent = "Humidity: " + data.days[index].humidity + "%"
 
-        
+
         forecast.appendChild(div)
         div.appendChild(article)
         article.appendChild(title)
@@ -93,15 +100,41 @@ var showForecast = function(data) {
         article.appendChild(textThree)
         article.appendChild(textFour)
         article.appendChild(textFive)
-
-
     };
-
-
 }
 
+var showTask = function () {
+    var article = document.createElement("article")
+    var text = document.createElement("p")
+    var typedText = taskBox.value.trim()
+
+
+
+    article.className = "box has-background-primary"
+    text.innerHTML = typedText
+    text.className = "subtitle"
+    itinerary.appendChild(article)
+    article.appendChild(text)
+
+ 
+}
+
+saveTask.addEventListener("click", function(event) {
+    event.preventDefault();
+
+    var tripinfo = {
+        Start: startDate.value.trim(),
+        End: endDate.value.trim(),
+        ToDo: taskBox.value.trim(),
+        Location: textBox.value.trim()
+    };
+
+    trip.push(tripinfo)
+
+    localStorage.setItem("trip", JSON.stringify(trip))
+    tripinfo
+    showTask();
+})
+
 searchBtn.addEventListener("click", getWeatherData)
-    
-// variable for search button 
-// capture API data
-// Pass that into display function
+

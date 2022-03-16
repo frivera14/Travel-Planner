@@ -18,23 +18,25 @@
   </header>
 
   <main>
-      <h2><strong class="strong">Where do you want to go?</strong></h2>
+    <h2><strong class="strong">Where do you want to go?</strong></h2>
 
-      <!--Search Engine  -->
+    <!--Search Engine  -->
     <div class="searchbar is-flex-direction-column">
       <input id="city" class="input is-rounded is-medium" type="text" placeholder="Search your destination">
       <input id="startDate" type="date" class="input is-rounded is-medium" placeholder="mm/dd/yyyy" autocomplete="off">
       <input id="endDate" type="date" class="input is-rounded is-medium" placeholder="mm/dd/yyyy" autocomplete="off">
-      <button id="search" style="background-color: coral;" class="button has-text-white is-rounded is-large ">Search</button>
+      <button id="search" style="background-color: coral;"
+        class="button has-text-white is-rounded is-large is-fullwidth">Search</button>
     </div>
 
     <!-- Suggestions -->
+    <h6><strong class="strong">Suggestions:</strong></h6>
     <div id="suggestions" class="buttons is-justify-content-center">
-        <button id="search" class="button has-background-primary has-text-white-bis is-rounded is-medium">New york</button>
-        <button id="search" class="button has-background-primary has-text-white-bis is-rounded is-medium">Los Angeles</button>
-        <button id="search" class="button has-background-primary has-text-white-bis is-rounded is-medium">Paris</button>
-        <button id="search" class="button has-background-primary has-text-white-bis is-rounded is-medium">London</button>
-        <button id="search" class="button has-background-primary has-text-white-bis is-rounded is-medium">Amsterdam</button>
+      <button class=" button has-background-primary has-text-white-bis is-rounded is-medium">New york</button>
+      <button class=" button has-background-primary has-text-white-bis is-rounded is-medium">Los Angeles</button>
+      <button class=" button has-background-primary has-text-white-bis is-rounded is-medium">Paris</button>
+      <button class=" button has-background-primary has-text-white-bis is-rounded is-medium">London</button>
+      <button class=" button has-background-primary has-text-white-bis is-rounded is-medium">Amsterdam</button>
     </div>
 
     <!-- Weather Data -->
@@ -44,42 +46,54 @@
     </div>
 
     <!-- Popular Spots -->
-    <h4 class="hide"><strong>Popular Spots</strong></h4>
+    <h4 class="hide"><strong class="strong">Popular Spots</strong></h4>
     <div id="tiles" class="container is-fluid tile is-ancestor is-flex-wrap-wrap">
-        <div class="tile is-parent">
-            <article class="tile is-child box">
-              <p class="title">Hot Spot</p>
-              <p class="subtitle">With an image</p>
-              <figure class="image is-4by3">
-                <img src="https://bulma.io/images/placeholders/640x480.png">
-              </figure>
-            </article>
-          </div>
-          <div class="tile is-parent">
-            <article class="tile is-child box">
-              <p class="title">Hot Spot</p>
-              <p class="subtitle">With an image</p>
-              <figure class="image is-4by3">
-                <img src="https://bulma.io/images/placeholders/640x480.png">
-              </figure>
-            </article>
-          </div><div class="tile is-parent">
-            <article class="tile is-child box">
-              <p class="title">Hot Spot</p>
-              <p class="subtitle">With an image</p>
-              <figure class="image is-4by3">
-                <img src="https://bulma.io/images/placeholders/640x480.png">
-              </figure>
-            </article>
-          </div><div class="tile is-parent">
-            <article class="tile is-child box">
-              <p class="title">Hot Spot</p>
-              <p class="subtitle">With an image</p>
-              <figure class="image is-4by3">
-                <img src="https://bulma.io/images/placeholders/640x480.png">
-              </figure>
-            </article>
-          </div>
+      <div class="tile is-parent">
+        <article class="tile is-child box">
+          <p class="title">Hot Spot</p>
+          <p class="subtitle">With an image</p>
+          <figure class="image is-4by3">
+            <img src="https://bulma.io/images/placeholders/640x480.png">
+          </figure>
+        </article>
+      </div>
+      <div class="tile is-parent">
+        <article class="tile is-child box">
+          <p class="title">Hot Spot</p>
+          <p class="subtitle">With an image</p>
+          <figure class="image is-4by3">
+            <img src="https://bulma.io/images/placeholders/640x480.png">
+          </figure>
+        </article>
+      </div>
+      <div class="tile is-parent">
+        <article class="tile is-child box">
+          <p class="title">Hot Spot</p>
+          <p class="subtitle">With an image</p>
+          <figure class="image is-4by3">
+            <img src="https://bulma.io/images/placeholders/640x480.png">
+          </figure>
+        </article>
+      </div>
+      <div class="tile is-parent">
+        <article class="tile is-child box">
+          <p class="title">Hot Spot</p>
+          <p class="subtitle">With an image</p>
+          <figure class="image is-4by3">
+            <img src="https://bulma.io/images/placeholders/640x480.png">
+          </figure>
+        </article>
+      </div>
+    </div>
+
+    <div id="itinerary" class="container my-1 is-flex-direction-column is-fluid is-ancestor">
+      <h4><strong class="strong">Track Your Activities</strong></h4>
+      <div class="field has-addons">
+        <input id="taskBox" class="input" type="text" placeholder="What do you want to do?">
+        <button id="taskSave" class="button is-primary">
+          Add Item:
+        </button>
+      </div>
     </div>
   </main>
 
