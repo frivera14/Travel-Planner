@@ -22,6 +22,8 @@ function apiGet(method, query) {
 
 //Button for New York generates information
 document.getElementById("NY").addEventListener('click',function(){
+    document.getElementById("hide").id="nothide";
+    document.getElementById("hideTitle").id="nothideTitle";
     let name = 'New york';
     apiGet("geoname","name="+name).then(function(data){
             lon = data.lon;
@@ -32,6 +34,8 @@ document.getElementById("NY").addEventListener('click',function(){
 
 //Button for Los Angeles generates information
 document.getElementById("LA").addEventListener('click',function(){
+    document.getElementById("hide").id="nothide";
+    document.getElementById("hideTitle").id="nothideTitle";
      let name = 'Los Angeles';
     apiGet("geoname","name="+name).then(function(data){
              lon = data.lon;
@@ -42,6 +46,8 @@ document.getElementById("LA").addEventListener('click',function(){
 
 //Button for Paris generates information
 document.getElementById("PAR").addEventListener('click',function(){
+    document.getElementById("hide").id="nothide";
+    document.getElementById("hideTitle").id="nothideTitle";
     let name = 'Paris';
     apiGet("geoname","name="+name).then(function(data){
             lon = data.lon;
@@ -52,6 +58,8 @@ document.getElementById("PAR").addEventListener('click',function(){
 
 //Button for London generates information
 document.getElementById("LDN").addEventListener('click',function(){
+    document.getElementById("hide").id="nothide";
+    document.getElementById("hideTitle").id="nothideTitle";
     let name = 'London';
     apiGet("geoname","name="+name).then(function(data){
             lon = data.lon;
@@ -62,6 +70,8 @@ document.getElementById("LDN").addEventListener('click',function(){
 
 //Button for Amsterdam generates information
 document.getElementById("AMS").addEventListener('click',function(){
+    document.getElementById("hide").id="nothide";
+    document.getElementById("hideTitle").id="nothideTitle";
     let name = 'Amsterdam';
      apiGet("geoname","name="+name).then(function(data){
             lon = data.lon;
@@ -76,6 +86,8 @@ document.getElementById("search").addEventListener('click',function(){
     apiGet("geoname","name="+name).then(function(data){
         let message = "Please enter a valid city.";
         if(data.status == "OK"){
+            document.getElementById("hide").id="nothide";
+            document.getElementById("hideTitle").id="nothideTitle";
             const regionNamesInEnglish = new Intl.DisplayNames(['en'], {type:'region'});
             message = "";
             lon = data.lon;

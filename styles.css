@@ -29,4 +29,7 @@ h2, h4 {
     margin-bottom: 15px;
 }
 
+#hide, #hideTitle {
+    display: none;
+}
 
