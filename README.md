@@ -20,4 +20,4 @@
 ![Screenshot of final web application](./pictures/TripationScreenshot.png)
 
 ## URL
-[URL to deployed application: url](url)
+[URL to deployed application: https://frivera14.github.io/Travel-Planner/](https://frivera14.github.io/Travel-Planner/)
