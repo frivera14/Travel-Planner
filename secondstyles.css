@@ -1,3 +1,7 @@
+html {
+    background-color: teal;
+}
+
 header {
     font-size: 100px;
     color: whitesmoke;	
@@ -25,7 +29,7 @@ h2, h4, h6 {
 
 h1{
 	font-family: Segoe, "Segoe UI", "DejaVu Sans", "Trebuchet MS", Verdana, "sans-serif" Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-	background-color: teal;	
+	background-color: mediumaquamarine;
 	border-radius: 20px;
     color: coral;
     font-weight: bold;

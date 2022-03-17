@@ -11,9 +11,8 @@ header {
 
 body { 
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-    background-image: url("SmallSunglasses.png");
+    background-image: url("./pictures/SmallSunglasses.png");
 	background-image: center;
-    background-color: teal;
 }
 
 h2, h4, h6 {
@@ -66,11 +65,8 @@ h1{
 }
 
 #hide, #hideTitle {
-    display: none;
-}
-
-#hide, #hideTitle {
-    display: none;
+    opacity: 0;
+    pointer-events: none;
 }
 
 /* The Modal (background) */
