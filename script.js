@@ -7,7 +7,7 @@ var forecast = document.getElementById("forecast")
 var itinerary = document.getElementById("itinerary")
 var saveTask = document.getElementById("taskSave")
 var taskBox = document.getElementById("taskBox")
-var trip = JSON.parse(localStorage.getItem("trips") || '[]')    
+var trip = JSON.parse(localStorage.getItem("trips") || '[]')
 var from
 var until
 var cityname
@@ -24,16 +24,18 @@ var modal = document.getElementById("myModal");
 var span = document.getElementsByClassName("close")[0];
 
 // When the user clicks on <span> (x), close the modal
-span.onclick = function() {
-  modal.style.display = "none";
+span.onclick = function () {
+    modal.style.display = "none";
 }
 
 // When the user clicks anywhere outside of the modal, close it
-window.onclick = function(event) {
-  if (event.target == modal) {
-    modal.style.display = "none";
-  }
+window.onclick = function (event) {
+    if (event.target == modal) {
+        modal.style.display = "none";
+    }
 }
+
+// Stores data in variables to use for API calls
 
 var getWeatherData = function (event) {
 
@@ -45,35 +47,36 @@ var getWeatherData = function (event) {
 
     if (cityname) {
         retrieveAPI(cityname, from, until);
-    } 
+    }
     else {
         document.getElementById("textModal").innerHTML = "Please enter a valid city name!"
         modal.style.display = "block";
     }
 
-    apiGet("geoname","name="+cityname).then(function(data){
-        if(data.status == "OK"){
+    apiGet("geoname", "name=" + cityname).then(function (data) {
+        if (data.status == "OK") {
             var hideID = document.getElementById("hide");
             var hideTitle = document.getElementById("hideTitle");
-            if(hideID){
-                hideID.id="nothide";
+            if (hideID) {
+                hideID.id = "nothide";
             }
-            if(hideTitle){
-                hideTitle.id="nothide";
+            if (hideTitle) {
+                hideTitle.id = "nothide";
             }
             lon = data.lon;
             lat = data.lat;
             loadList();
         }
         else {
-        document.getElementById("textModal").innerHTML = "Please enter a valid city name!"
-        modal.style.display = "block";
-        
+            document.getElementById("textModal").innerHTML = "Please enter a valid city name!"
+            modal.style.display = "block";
+
         }
 
-})
+    })
 }
 
+// weather API call
 var retrieveAPI = function (cityname, from, until) {
 
     var apiURL = `https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/${cityname}/${from}/${until}?key=VLELTD5BYNLQJ2U6ZZ6BR6XNP`
@@ -96,12 +99,14 @@ var retrieveAPI = function (cityname, from, until) {
         })
 }
 
+
+// Display weather data
 var showForecast = function (data) {
     var weatherTxt = document.getElementById("weatherTxt")
-    
+
     weatherTxt.className = ""
     forecast.innerHTML = ""
-   
+
 
     for (let index = 0; index < data.days.length; index++) {
         var div = document.createElement("div")
@@ -146,6 +151,7 @@ var showForecast = function (data) {
     };
 }
 
+// Display to do item in itinerary section
 var showTask = function () {
     var article = document.createElement("article")
     var text = document.createElement("p")
@@ -159,10 +165,11 @@ var showTask = function () {
     itinerary.appendChild(article)
     article.appendChild(text)
 
- 
+
 }
 
-saveTask.addEventListener("click", function(event) {
+// Save to local storage
+saveTask.addEventListener("click", function (event) {
     event.preventDefault();
 
     var tripinfo = {
@@ -184,166 +191,167 @@ searchBtn.addEventListener("click", getWeatherData)
 
 //Calls API methods by fetch function 
 function apiGet(method, query) {
-    return new Promise(function(resolve, reject) {
-      var otmAPI = "https://api.opentripmap.com/0.1/en/places/" +method+"?apikey="+apiKey;
-      if (query !== undefined) {
-        otmAPI += "&" + query;
-      }
-      fetch(otmAPI)
-        .then(response => response.json())
-        .then(data => resolve(data))
-        .catch(function(err) {
-          console.log("Fetch Error :-S", err);
-        });
+    return new Promise(function (resolve, reject) {
+        var otmAPI = "https://api.opentripmap.com/0.1/en/places/" + method + "?apikey=" + apiKey;
+        if (query !== undefined) {
+            otmAPI += "&" + query;
+        }
+        fetch(otmAPI)
+            .then(response => response.json())
+            .then(data => resolve(data))
+            .catch(function (err) {
+                console.log("Fetch Error :-S", err);
+            });
     });
-  }
-  
-  //Button for New York generates information
-  document.getElementById("NY").addEventListener('click',function(){
+}
+
+//Button for New York generates information
+document.getElementById("NY").addEventListener('click', function () {
     var hideID = document.getElementById("hide");
     var hideTitle = document.getElementById("hideTitle");
-    if(hideID){
-        hideID.id="nothide";
+    if (hideID) {
+        hideID.id = "nothide";
     }
-    if(hideTitle){
-        hideTitle.id="nothideTitle";
+    if (hideTitle) {
+        hideTitle.id = "nothideTitle";
     }
-      let name = 'New york';
-      apiGet("geoname","name="+name).then(function(data){
-              lon = data.lon;
-              lat = data.lat;
-              loadList();
-          })
-      });
-  
-  //Button for Los Angeles generates information
-  document.getElementById("LA").addEventListener('click',function(){
+    let name = 'New york';
+    apiGet("geoname", "name=" + name).then(function (data) {
+        lon = data.lon;
+        lat = data.lat;
+        loadList();
+    })
+});
+
+//Button for Los Angeles generates information
+document.getElementById("LA").addEventListener('click', function () {
     var hideID = document.getElementById("hide");
     var hideTitle = document.getElementById("hideTitle");
-    if(hideID){
-        hideID.id="nothide";
+    if (hideID) {
+        hideID.id = "nothide";
     }
-    if(hideTitle){
-        hideTitle.id="nothideTitle";
+    if (hideTitle) {
+        hideTitle.id = "nothideTitle";
     }
-       let name = 'Los Angeles';
-      apiGet("geoname","name="+name).then(function(data){
-               lon = data.lon;
-               lat = data.lat;
-              loadList();
-          })
-      });
-  
-  //Button for Paris generates information
-  document.getElementById("PAR").addEventListener('click',function(){
+    let name = 'Los Angeles';
+    apiGet("geoname", "name=" + name).then(function (data) {
+        lon = data.lon;
+        lat = data.lat;
+        loadList();
+    })
+});
+
+//Button for Paris generates information
+document.getElementById("PAR").addEventListener('click', function () {
     var hideID = document.getElementById("hide");
     var hideTitle = document.getElementById("hideTitle");
-    if(hideID){
-        hideID.id="nothide";
+    if (hideID) {
+        hideID.id = "nothide";
     }
-    if(hideTitle){
-        hideTitle.id="nothideTitle";
+    if (hideTitle) {
+        hideTitle.id = "nothideTitle";
     }
-      let name = 'Paris';
-      apiGet("geoname","name="+name).then(function(data){
-              lon = data.lon;
-              lat = data.lat;
-              loadList();
-          })
-      });
-  
-  //Button for London generates information
-  document.getElementById("LDN").addEventListener('click',function(){
+    let name = 'Paris';
+    apiGet("geoname", "name=" + name).then(function (data) {
+        lon = data.lon;
+        lat = data.lat;
+        loadList();
+    })
+});
+
+//Button for London generates information
+document.getElementById("LDN").addEventListener('click', function () {
     var hideID = document.getElementById("hide");
     var hideTitle = document.getElementById("hideTitle");
-            if(hideID){
-                hideID.id="nothide";
-            }
-            if(hideTitle){
-                hideTitle.id="nothideTitle";
-            }
-      let name = 'London';
-      apiGet("geoname","name="+name).then(function(data){
-              lon = data.lon;
-              lat = data.lat;
-              loadList();
-          })
-      });
-  
-  //Button for Amsterdam generates information
-  document.getElementById("AMS").addEventListener('click',function(){
+    if (hideID) {
+        hideID.id = "nothide";
+    }
+    if (hideTitle) {
+        hideTitle.id = "nothideTitle";
+    }
+    let name = 'London';
+    apiGet("geoname", "name=" + name).then(function (data) {
+        lon = data.lon;
+        lat = data.lat;
+        loadList();
+    })
+});
+
+//Button for Amsterdam generates information
+document.getElementById("AMS").addEventListener('click', function () {
     var hideID = document.getElementById("hide");
     var hideTitle = document.getElementById("hideTitle");
-    if(hideID){
-        hideID.id="nothide";
+    if (hideID) {
+        hideID.id = "nothide";
     }
-    if(hideTitle){
-        hideTitle.id="nothideTitle";
+    if (hideTitle) {
+        hideTitle.id = "nothideTitle";
     }
-      let name = 'Amsterdam';
-       apiGet("geoname","name="+name).then(function(data){
-              lon = data.lon;
-              lat = data.lat;
-              loadList();
-          })
-      });
-  
-  //Generates information for popular spots based on search bar input
-      
-  
-  const titles = document.querySelectorAll("#HotSpot");
-  const images = document.querySelectorAll(".img")
-  const desc = document.querySelectorAll(".desc")
-  
-  //Gets a list of all popular spots from API call
-  function loadList() {
-      apiGet(
+    let name = 'Amsterdam';
+    apiGet("geoname", "name=" + name).then(function (data) {
+        lon = data.lon;
+        lat = data.lat;
+        loadList();
+    })
+});
+
+//Generates information for popular spots based on search bar input
+
+
+const titles = document.querySelectorAll("#HotSpot");
+const images = document.querySelectorAll(".img")
+const desc = document.querySelectorAll(".desc")
+
+//Gets a list of all popular spots from API call
+function loadList() {
+    apiGet(
         "radius",
         `radius=3500&limit=${pageLength}&offset=2&lon=${lon}&lat=${lat}&rate=2&format=json`
-      ).then(function(data) {
-          for(i=0; i<titles.length; ++i) {  
-          if ( data[i] == null) {
-              titles[i].innerHTML = 'Hot Spot';
-              images[i].src = "https://bulma.io/images/placeholders/640x480.png";
-              desc[i].innerHTML = 'No spot found';
-          }
-          else {
-          titles[i].innerHTML = data[i].name;
-          loadImage(data[i].xid, i);
-          loadDesc(data[i].xid, i);
-          }
-     
-      }});
-    }
-  
-  //Loads images of popular spots from API call
-  function loadImage(xid, i){
-      apiGet(
-      `xid/${xid}`
-      )
-      .then(function(data) {
-      if (typeof data.preview.source !== 'undefined') {
-          images[i].src = data.preview.source;
-      }
-      else {
-          images[i].src = "https://bulma.io/images/placeholders/640x480.png";
-      }
-      })
-      .catch(function(err) {
-          images[i].src = "https://bulma.io/images/placeholders/640x480.png"
+    ).then(function (data) {
+        for (i = 0; i < titles.length; ++i) {
+            if (data[i] == null) {
+                titles[i].innerHTML = 'Hot Spot';
+                images[i].src = "https://bulma.io/images/placeholders/640x480.png";
+                desc[i].innerHTML = 'No spot found';
+            }
+            else {
+                titles[i].innerHTML = data[i].name;
+                loadImage(data[i].xid, i);
+                loadDesc(data[i].xid, i);
+            }
+
+        }
+    });
+}
+
+//Loads images of popular spots from API call
+function loadImage(xid, i) {
+    apiGet(
+        `xid/${xid}`
+    )
+        .then(function (data) {
+            if (typeof data.preview.source !== 'undefined') {
+                images[i].src = data.preview.source;
+            }
+            else {
+                images[i].src = "https://bulma.io/images/placeholders/640x480.png";
+            }
+        })
+        .catch(function (err) {
+            images[i].src = "https://bulma.io/images/placeholders/640x480.png"
         });
-  }
-  
-  //Loads description of popular spots from API call
-  function loadDesc(xid, i){
-      apiGet(
-      `xid/${xid}`
-      )
-      .then(function(data) {
-          desc[i].innerHTML = data.wikipedia_extracts.text;
-      })
-      .catch(function(err) {
-          desc[i].innerHTML = "No description found."
+}
+
+//Loads description of popular spots from API call
+function loadDesc(xid, i) {
+    apiGet(
+        `xid/${xid}`
+    )
+        .then(function (data) {
+            desc[i].innerHTML = data.wikipedia_extracts.text;
+        })
+        .catch(function (err) {
+            desc[i].innerHTML = "No description found."
         });
-  }
+}
 
