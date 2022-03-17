@@ -11,9 +11,9 @@ header {
 
 body { 
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-	background-color: teal;
-
-
+    background-image: url("SmallSunglasses.png");
+	background-image: center;
+    background-color: teal;
 }
 
 h2, h4, h6 {
@@ -24,11 +24,10 @@ h2, h4, h6 {
 
 h1{
 	font-family: Segoe, "Segoe UI", "DejaVu Sans", "Trebuchet MS", Verdana, "sans-serif" Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-	background-color: teal;	
+	background-color: mediumaquamarine;	
 	border-radius: 20px;
     color: coral;
-    font-weight: bold;
-	
+    font-weight: bold;	
 }
 
 .hide {
@@ -38,25 +37,21 @@ h1{
 .searchbar {
     margin-right: 100px;
     margin-left: 100px;
-
 }
 
 .tile .is-parent .box{
 	background-color: mediumaquamarine;
     min-width: 150px;
-
 }
 
 .title {
 	text-shadow: 1px 1px 2px whitesmoke;
-	color: white;
-    
+	color: white;    
 }
 
 .subtitle {
 	text-shadow: 1px 1px grey;
-	color: whitesmoke;
-    
+	color: whitesmoke;    
 }
 
 .strong {
@@ -64,11 +59,15 @@ h1{
 	color:coral;
 }
 
+.button {
+	background-color: mediumaquamarine;
+	color: white;
+	border-width: 0px;		
+}
+
 #hide, #hideTitle {
     display: none;
 }
-
-
 
 #hide, #hideTitle {
     display: none;
@@ -88,7 +87,6 @@ h1{
     background-color: rgb(0,0,0); /* Fallback color */
     background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
   }
-
   
   /* Modal Header */
 .modal-header {
